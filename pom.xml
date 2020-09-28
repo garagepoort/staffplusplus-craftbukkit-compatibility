@@ -43,6 +43,7 @@
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.deploy.skip>true</maven.deploy.skip>
     </properties>
 
     <repositories>
@@ -88,4 +89,12 @@
             <version>2.6</version>
         </dependency>
     </dependencies>
+
+    <distributionManagement>
+        <repository>
+            <id>repsy-staffplusplus</id>
+            <name>Central Repository StaffPlusPlus</name>
+            <url>https://repo.repsy.io/mvn/garagepoort/staffplusplus/</url>
+        </repository>
+    </distributionManagement>
 </project>

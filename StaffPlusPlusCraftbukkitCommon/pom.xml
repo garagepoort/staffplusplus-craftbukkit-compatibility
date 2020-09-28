@@ -11,6 +11,10 @@
 
     <artifactId>StaffPlusPlusCraftbukkitCommon</artifactId>
 
+    <properties>
+        <maven.deploy.skip>false</maven.deploy.skip>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.spigotmc</groupId>
@@ -24,11 +28,4 @@
             <version>4.1.38.Final</version>
         </dependency>
     </dependencies>
-    <distributionManagement>
-        <repository>
-            <id>repsy-staffplusplus</id>
-            <name>Central Repository StaffPlusPlus</name>
-            <url>https://repo.repsy.io/mvn/garagepoort/staffplusplus/</url>
-        </repository>
-    </distributionManagement>
 </project>
