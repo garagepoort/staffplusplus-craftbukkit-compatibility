@@ -67,6 +67,11 @@
             <id>github-rjenkinsjr</id>
             <url>https://raw.github.com/rjenkinsjr/maven2/repo</url>
         </repository>
+        <repository>
+            <id>repsy-staffplusplus</id>
+            <name>staffplusplus-deps</name>
+            <url>https://repo.repsy.io/mvn/garagepoort/staffplusplus</url>
+        </repository>
     </repositories>
 
     <dependencies>
@@ -82,7 +87,5 @@
             <artifactId>commons-lang</artifactId>
             <version>2.6</version>
         </dependency>
-
-        <!-- Minecraft -->
     </dependencies>
 </project>
