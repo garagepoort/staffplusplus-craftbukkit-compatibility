@@ -3,7 +3,7 @@ package net.shortninja.staffplus.server.compatibility.v1_1x;
 import be.garagepoort.staffplusplus.craftbukkit.common.AbstractPacketHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelPromise;
-import net.minecraft.server.v1_16_R2.PacketPlayOutNamedSoundEffect;
+import net.minecraft.server.v1_16_R3.PacketPlayOutNamedSoundEffect;
 import net.shortninja.staffplus.IStaffPlus;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
