@@ -22,6 +22,8 @@ public interface IProtocol {
 
     String getNbtString(ItemStack item);
 
+    void unregisterCommand(Command command);
+
     void registerCommand(String match, Command command);
 
     void listVanish(Player player, boolean shouldEnable);

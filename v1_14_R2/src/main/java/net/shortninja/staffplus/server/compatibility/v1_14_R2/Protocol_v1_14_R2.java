@@ -43,7 +43,11 @@ public class Protocol_v1_14_R2 implements IProtocol {
         return nbtCompound.getString(NBT_IDENTIFIER);
     }
 
-    @Override
+        @Override
+    public void unregisterCommand(Command command) {
+        command.unregister(((CraftServer) Bukkit.getServer()).getCommandMap());
+    }
+@Override
     public void registerCommand(String match, Command command) {
         ((CraftServer) Bukkit.getServer()).getCommandMap().register(match, command);
     }
