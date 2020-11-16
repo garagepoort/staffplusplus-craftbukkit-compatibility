@@ -10,6 +10,7 @@ import net.shortninja.staffplus.util.lib.json.JsonMessage;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.craftbukkit.v1_16_R1.CraftServer;
+import org.bukkit.craftbukkit.v1_16_R1.command.CraftCommandMap;
 import org.bukkit.craftbukkit.v1_16_R1.entity.CraftPlayer;
 import org.bukkit.craftbukkit.v1_16_R1.inventory.CraftItemStack;
 import org.bukkit.entity.Player;
@@ -44,11 +45,35 @@ public class Protocol_v1_16_R1 implements IProtocol {
         return nbtCompound.getString(NBT_IDENTIFIER);
     }
 
-        @Override
-    public void unregisterCommand(Command command) {
-        command.unregister(((CraftServer) Bukkit.getServer()).getCommandMap());
+    @Override
+    public void unregisterCommand(String match, Command command) {
+        CraftCommandMap commandMap = (CraftCommandMap) ((CraftServer) Bukkit.getServer()).getCommandMap();
+        command.unregister(commandMap);
+
+        String commandName = command.getLabel().toLowerCase();
+        if (commandMap.getKnownCommands().get(commandName) == command) {
+            commandMap.getKnownCommands().remove(commandName);
+        }
+
+        String commandNameWithPrefix = match.toLowerCase() + ":" + commandName;
+        if (commandMap.getKnownCommands().get(commandNameWithPrefix) == command) {
+            commandMap.getKnownCommands().remove(commandNameWithPrefix);
+        }
+
+
+        for (String alias : command.getAliases()) {
+            String aliasName = alias.toLowerCase();
+            String aliasNameWithPrefix = match.toLowerCase() + ":" + aliasName;
+            if (commandMap.getKnownCommands().get(aliasName) == command) {
+                commandMap.getKnownCommands().remove(aliasName);
+            }
+            if (commandMap.getKnownCommands().get(aliasNameWithPrefix) == command) {
+                commandMap.getKnownCommands().remove(aliasNameWithPrefix);
+            }
+        }
     }
-@Override
+
+    @Override
     public void registerCommand(String match, Command command) {
         ((CraftServer) Bukkit.getServer()).getCommandMap().register(match, command);
     }
@@ -68,7 +93,7 @@ public class Protocol_v1_16_R1 implements IProtocol {
     @Override
     public void sendHoverableJsonMessage(Set<Player> players, String message, String hoverMessage) {
         JsonMessage json = new JsonMessage().append(message).setHoverAsTooltip(hoverMessage).save();
-        PacketPlayOutChat packet = new PacketPlayOutChat(ChatSerializer.a(json.getMessage()),ChatMessageType.CHAT,UUID.fromString(""));
+        PacketPlayOutChat packet = new PacketPlayOutChat(ChatSerializer.a(json.getMessage()), ChatMessageType.CHAT, UUID.fromString(""));
 
         for (Player player : players) {
             ((CraftPlayer) player).getHandle().playerConnection.sendPacket(packet);

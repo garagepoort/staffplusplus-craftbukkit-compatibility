@@ -9,12 +9,14 @@ import net.minecraft.server.v1_12_R1.*;
 import net.minecraft.server.v1_12_R1.PacketPlayOutPlayerInfo.EnumPlayerInfoAction;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
+import org.bukkit.command.SimpleCommandMap;
 import org.bukkit.craftbukkit.v1_12_R1.CraftServer;
 import org.bukkit.craftbukkit.v1_12_R1.entity.CraftPlayer;
 import org.bukkit.craftbukkit.v1_12_R1.inventory.CraftItemStack;
 import org.bukkit.entity.Player;
 
 import java.lang.reflect.Field;
+import java.util.Map;
 import java.util.Set;
 
 public class Protocol_v1_12_R1 implements IProtocol {
@@ -44,8 +46,38 @@ public class Protocol_v1_12_R1 implements IProtocol {
     }
 
     @Override
-    public void unregisterCommand(Command command) {
-        command.unregister(((CraftServer) Bukkit.getServer()).getCommandMap());
+    public void unregisterCommand(String match, Command command) {
+        SimpleCommandMap commandMap = ((CraftServer) Bukkit.getServer()).getCommandMap();
+        command.unregister(commandMap);
+        try {
+            final Field knownCommands = commandMap.getClass().getDeclaredField("knownCommands");
+            knownCommands.setAccessible(true);
+            Map<String, Command> cmds = (Map<String, Command>) knownCommands.get(commandMap);
+
+            String commandName = command.getLabel().toLowerCase();
+            if (cmds.get(commandName) == command) {
+                cmds.remove(commandName);
+            }
+
+            String commandNameWithPrefix = match.toLowerCase() + ":" + commandName;
+            if (cmds.get(commandNameWithPrefix) == command) {
+                cmds.remove(commandNameWithPrefix);
+            }
+
+            for (String alias : command.getAliases()) {
+                String aliasName = alias.toLowerCase();
+                String aliasNameWithPrefix = match.toLowerCase() + ":" + aliasName;
+                if (cmds.get(aliasName) == command) {
+                    cmds.remove(aliasName);
+                }
+                if (cmds.get(aliasNameWithPrefix) == command) {
+                    cmds.remove(aliasNameWithPrefix);
+                }
+            }
+            knownCommands.set(commandMap, cmds);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

@@ -10,6 +10,7 @@ import net.minecraft.server.v1_13_R2.PacketPlayOutPlayerInfo.EnumPlayerInfoActio
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.craftbukkit.v1_13_R2.CraftServer;
+import org.bukkit.craftbukkit.v1_13_R2.command.CraftCommandMap;
 import org.bukkit.craftbukkit.v1_13_R2.entity.CraftPlayer;
 import org.bukkit.craftbukkit.v1_13_R2.inventory.CraftItemStack;
 import org.bukkit.entity.Player;
@@ -44,8 +45,31 @@ public class Protocol_v1_13_R1 implements IProtocol {
     }
 
     @Override
-    public void unregisterCommand(Command command) {
-        command.unregister(((CraftServer) Bukkit.getServer()).getCommandMap());
+    public void unregisterCommand(String match, Command command) {
+        CraftCommandMap commandMap = (CraftCommandMap) ((CraftServer) Bukkit.getServer()).getCommandMap();
+        command.unregister(commandMap);
+
+        String commandName = command.getLabel().toLowerCase();
+        if (commandMap.getKnownCommands().get(commandName) == command) {
+            commandMap.getKnownCommands().remove(commandName);
+        }
+
+        String commandNameWithPrefix = match.toLowerCase() + ":" + commandName;
+        if (commandMap.getKnownCommands().get(commandNameWithPrefix) == command) {
+            commandMap.getKnownCommands().remove(commandNameWithPrefix);
+        }
+
+
+        for (String alias : command.getAliases()) {
+            String aliasName = alias.toLowerCase();
+            String aliasNameWithPrefix = match.toLowerCase() + ":" + aliasName;
+            if (commandMap.getKnownCommands().get(aliasName) == command) {
+                commandMap.getKnownCommands().remove(aliasName);
+            }
+            if (commandMap.getKnownCommands().get(aliasNameWithPrefix) == command) {
+                commandMap.getKnownCommands().remove(aliasNameWithPrefix);
+            }
+        }
     }
 
     @Override

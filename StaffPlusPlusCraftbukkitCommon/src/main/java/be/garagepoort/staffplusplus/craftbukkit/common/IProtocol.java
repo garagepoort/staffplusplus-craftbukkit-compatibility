@@ -22,7 +22,7 @@ public interface IProtocol {
 
     String getNbtString(ItemStack item);
 
-    void unregisterCommand(Command command);
+    void unregisterCommand(String match, Command command);
 
     void registerCommand(String match, Command command);
 
