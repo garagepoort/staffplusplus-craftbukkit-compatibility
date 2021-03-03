@@ -1,12 +1,12 @@
 package net.shortninja.staffplus.server.compatibility.v1_1x;
 
 import be.garagepoort.staffplusplus.craftbukkit.common.IProtocol;
+import be.garagepoort.staffplusplus.craftbukkit.common.json.JsonMessage;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelPipeline;
 import net.minecraft.server.v1_16_R1.*;
 import net.minecraft.server.v1_16_R1.IChatBaseComponent.ChatSerializer;
 import net.minecraft.server.v1_16_R1.PacketPlayOutPlayerInfo.EnumPlayerInfoAction;
-import net.shortninja.staffplus.util.lib.json.JsonMessage;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.craftbukkit.v1_16_R1.CraftServer;

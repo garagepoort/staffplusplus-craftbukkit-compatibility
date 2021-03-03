@@ -4,7 +4,7 @@ import be.garagepoort.staffplusplus.craftbukkit.common.AbstractPacketHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelPromise;
 import net.minecraft.server.v1_15_R1.PacketPlayOutNamedSoundEffect;
-import net.shortninja.staffplus.IStaffPlus;
+import net.shortninja.staffplusplus.IStaffPlus;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.RegisteredServiceProvider;

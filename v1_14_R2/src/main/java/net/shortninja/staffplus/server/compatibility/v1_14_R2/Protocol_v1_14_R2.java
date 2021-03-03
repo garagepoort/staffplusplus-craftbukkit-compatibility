@@ -1,12 +1,12 @@
 package net.shortninja.staffplus.server.compatibility.v1_14_R2;
 
 import be.garagepoort.staffplusplus.craftbukkit.common.IProtocol;
+import be.garagepoort.staffplusplus.craftbukkit.common.json.JsonMessage;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelPipeline;
 import net.minecraft.server.v1_14_R1.IChatBaseComponent.ChatSerializer;
 import net.minecraft.server.v1_14_R1.*;
 import net.minecraft.server.v1_14_R1.PacketPlayOutPlayerInfo.EnumPlayerInfoAction;
-import net.shortninja.staffplus.util.lib.json.JsonMessage;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.craftbukkit.v1_14_R1.CraftServer;
@@ -91,7 +91,7 @@ public class Protocol_v1_14_R2 implements IProtocol {
 
     @Override
     public void sendHoverableJsonMessage(Set<Player> players, String message, String hoverMessage) {
-        net.shortninja.staffplus.util.lib.json.JsonMessage json = new JsonMessage().append(message).setHoverAsTooltip(hoverMessage).save();
+        JsonMessage json = new JsonMessage().append(message).setHoverAsTooltip(hoverMessage).save();
         PacketPlayOutChat packet = new PacketPlayOutChat(ChatSerializer.a(json.getMessage()));
 
         for (Player player : players) {
