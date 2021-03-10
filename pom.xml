@@ -74,6 +74,16 @@
         </repository>
     </repositories>
 
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>net.shortninja.staffplus</groupId>
+                <artifactId>staffplusplus-api</artifactId>
+                <version>1.0.4</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
     <dependencies>
         <!-- Spigot -->
         <dependency>

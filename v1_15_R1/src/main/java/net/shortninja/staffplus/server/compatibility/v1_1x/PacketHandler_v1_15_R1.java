@@ -20,7 +20,7 @@ public final class PacketHandler_v1_15_R1 extends AbstractPacketHandler {
         if (o instanceof PacketPlayOutNamedSoundEffect) {
             RegisteredServiceProvider<IStaffPlus> provider = Bukkit.getServicesManager().getRegistration(IStaffPlus.class);
             if (provider != null) {
-                return !provider.getProvider().isPlayerVanished(player.getUniqueId());
+                return !provider.getProvider().getSessionManager().get(player.getUniqueId()).isVanished();
             }
         }
 
