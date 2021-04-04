@@ -93,7 +93,7 @@ public class Protocol_v1_16_R1 implements IProtocol {
     @Override
     public void sendHoverableJsonMessage(Set<Player> players, String message, String hoverMessage) {
         JsonMessage json = new JsonMessage().append(message).setHoverAsTooltip(hoverMessage).save();
-        PacketPlayOutChat packet = new PacketPlayOutChat(ChatSerializer.a(json.getMessage()), ChatMessageType.CHAT, UUID.fromString(""));
+        PacketPlayOutChat packet = new PacketPlayOutChat(ChatSerializer.a(json.getMessage()), ChatMessageType.CHAT, UUID.randomUUID());
 
         for (Player player : players) {
             ((CraftPlayer) player).getHandle().playerConnection.sendPacket(packet);
