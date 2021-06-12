@@ -35,6 +35,8 @@ public class ProtocolFactory {
                 return new Protocol_v1_16_R2();
             case "v1_16_R3":
                 return new Protocol_v1_16_R3();
+            case "v1_17_R1":
+                return new Protocol_v1_17_R0();
             default:
                 throw new RuntimeException("No suitable protocal version found. Are you sure this version of minecraft is supported?");
         }

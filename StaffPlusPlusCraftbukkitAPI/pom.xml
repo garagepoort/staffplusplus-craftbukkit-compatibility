@@ -75,5 +75,11 @@
             <artifactId>v1_16_R3</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
+        <dependency>
+            <groupId>net.shortninja.staffplus</groupId>
+            <artifactId>v1_17_R0</artifactId>
+            <version>${project.parent.version}</version>
+            <classifier>remapped-mojang</classifier>
+        </dependency>
     </dependencies>
 </project>
