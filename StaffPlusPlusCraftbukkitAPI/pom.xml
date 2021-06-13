@@ -79,7 +79,7 @@
             <groupId>net.shortninja.staffplus</groupId>
             <artifactId>v1_17_R0</artifactId>
             <version>${project.parent.version}</version>
-            <classifier>remapped-mojang</classifier>
+            <classifier>remapped-spigot</classifier>
         </dependency>
     </dependencies>
 </project>

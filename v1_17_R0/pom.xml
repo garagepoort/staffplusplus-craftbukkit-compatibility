@@ -46,13 +46,13 @@
                         <goals>
                             <goal>remap</goal>
                         </goals>
-                        <id>remap-mojang</id>
+                        <id>remap-obf</id>
                         <configuration>
                             <srgIn>org.spigotmc:minecraft-server:1.17-R0.1-SNAPSHOT:txt:maps-mojang</srgIn>
                             <reverse>true</reverse>
                             <remappedDependencies>org.spigotmc:spigot:1.17-R0.1-SNAPSHOT:jar:remapped-mojang</remappedDependencies>
                             <remappedArtifactAttached>true</remappedArtifactAttached>
-                            <remappedClassifierName>remapped-mojang</remappedClassifierName>
+                            <remappedClassifierName>remapped-obf</remappedClassifierName>
                         </configuration>
                     </execution>
                     <execution>
@@ -62,9 +62,11 @@
                         </goals>
                         <id>remap-spigot</id>
                         <configuration>
-                            <inputFile>${project.build.directory}/${project.artifactId}-${project.version}-remapped-mojang.jar</inputFile>
+                            <inputFile>${project.build.directory}/${project.artifactId}-${project.version}-remapped-obf.jar</inputFile>
                             <srgIn>org.spigotmc:minecraft-server:1.17-R0.1-SNAPSHOT:csrg:maps-spigot</srgIn>
-                            <remappedDependencies>org.spigotmc:spigot:1.17-R0.1-SNAPSHOT:jar:remapped-mojang</remappedDependencies>
+                            <remappedDependencies>org.spigotmc:spigot:1.17-R0.1-SNAPSHOT:jar:remapped-obf</remappedDependencies>
+                            <remappedArtifactAttached>true</remappedArtifactAttached>
+                            <remappedClassifierName>remapped-spigot</remappedClassifierName>
                         </configuration>
                     </execution>
                 </executions>
