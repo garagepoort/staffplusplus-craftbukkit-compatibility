@@ -81,9 +81,9 @@
 
     <distributionManagement>
         <repository>
-            <id>repsy-staffplusplus</id>
+            <id>staffplusplus-repo</id>
             <name>Central Repository StaffPlusPlus</name>
-            <url>https://repo.repsy.io/mvn/garagepoort/staffplusplus/</url>
+            <url>https://staffplusplus.jfrog.io/artifactory/default-maven-local</url>
         </repository>
     </distributionManagement>
 </project>
