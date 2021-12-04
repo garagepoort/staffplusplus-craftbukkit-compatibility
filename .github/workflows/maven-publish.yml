@@ -31,16 +31,9 @@ jobs:
         env:
           MAVEN_USERNAME: ${{ secrets.REPO_USERNAME }}
           MAVEN_PASSWORD: ${{ secrets.REPO_PASS }}
-
-      - name: Bump version
-        run: chmod +x ./bump_version.sh && ./bump_version.sh
-
-      - name: Commit files
-        run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git commit -m "Bumped version" -a
-      - name: Push changes
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Push tag
+        uses: anothrNick/github-tag-action@1.36.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          WITH_V: true
+          DEFAULT_BUMP: none
