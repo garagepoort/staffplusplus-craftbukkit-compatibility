@@ -20,6 +20,7 @@
         <dependency>
             <groupId>net.shortninja.staffplus</groupId>
             <artifactId>staffplusplus-api</artifactId>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.spigotmc</groupId>
