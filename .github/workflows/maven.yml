@@ -4,26 +4,50 @@
 name: MasterBuild
 
 on:
-    push:
-        branches: [ master ]
-    pull_request:
-        branches: [ master ]
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
 
 jobs:
-    build:
-        runs-on: ubuntu-latest
-        steps:
-            -   uses: actions/checkout@v2
-            -   name: Set up JDK 1.17
-                uses: actions/setup-java@v1
-                with:
-                    java-version: 1.17
-            - name: Cache local Maven repository
-              uses: actions/cache@v2
-              with:
-                  path: ~/.m2/repository
-                  key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
-                  restore-keys: |
-                      ${{ runner.os }}-maven-
-            -   name: Build with Maven
-                run: mvn -B package --file pom.xml
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Inject slug/short variables
+        uses: rlespinasse/github-slug-action@v3.x
+
+      - id: get-release-version
+        uses: actions/github-script@0.9.0
+        with:
+          script: |
+            const releaseVersion = process.env.GITHUB_REF_SLUG.substring(process.env.GITHUB_REF_SLUG.indexOf("-") + 1, process.env.GITHUB_REF_SLUG.lastIndexOf("."));
+            core.setOutput('releaseVersion', releaseVersion)
+
+      - name: Set up JDK 1.17
+        uses: actions/setup-java@v1
+        if: ${{ steps.get-release-version.outputs.releaseVersion == '1.18' }}
+        with:
+          java-version: 1.17
+
+      - name: Set up JDK 1.16
+        uses: actions/setup-java@v1
+        if: ${{ steps.get-release-version.outputs.releaseVersion == '1.17' }}
+        with:
+          java-version: 1.16
+
+      - name: Set up JDK 1.8
+        uses: actions/setup-java@v1
+        if: ${{ steps.get-release-version.outputs.releaseVersion != '1.17' && steps.get-release-version.outputs.releaseVersion != '1.18' }}
+        with:
+          java-version: 1.8
+
+      - name: Cache local Maven repository
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+      - name: Build with Maven
+        run: mvn -B package --file pom.xml
