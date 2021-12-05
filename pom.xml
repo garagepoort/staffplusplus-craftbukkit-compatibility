@@ -49,7 +49,7 @@
     <repositories>
         <repository>
             <id>staffplusplus-repo</id>
-            <url>https://staffplusplus.jfrog.io/artifactory/default-maven-virtual/</url>
+            <url>https://nexus.staffplusplus.org/repository/staffplusplus/</url>
         </repository>
     </repositories>
 
@@ -82,7 +82,7 @@
         <repository>
             <id>staffplusplus-repo</id>
             <name>Central Repository StaffPlusPlus</name>
-            <url>https://staffplusplus.jfrog.io/artifactory/default-maven-local</url>
+            <url>https://nexus.staffplusplus.org/repository/maven-releases/</url>
         </repository>
     </distributionManagement>
 </project>
