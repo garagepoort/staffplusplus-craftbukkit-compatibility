@@ -10,7 +10,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>StaffPlusPlusCraftbukkitCommon</artifactId>
-
+    <properties>
+        <maven.deploy.skip>false</maven.deploy.skip>
+    </properties>
 
 
     <dependencies>
