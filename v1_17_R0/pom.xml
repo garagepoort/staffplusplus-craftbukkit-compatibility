@@ -12,7 +12,7 @@
     <artifactId>v1_17_R0</artifactId>
 
     <properties>
-        <maven.deploy.skip>true</maven.deploy.skip>
+
         <spigot.version>1.17-R0.1-SNAPSHOT</spigot.version>
     </properties>
 
