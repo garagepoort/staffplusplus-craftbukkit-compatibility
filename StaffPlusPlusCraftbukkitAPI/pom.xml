@@ -5,7 +5,7 @@
     <parent>
         <artifactId>StaffPlusPlusCraftBukkit</artifactId>
         <groupId>net.shortninja.staffplus</groupId>
-        <version>1.18</version>
+        <version>1.18.2</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -80,6 +80,18 @@
         <dependency>
             <groupId>net.shortninja.staffplus</groupId>
             <artifactId>v1_17_R0</artifactId>
+            <version>${project.parent.version}</version>
+            <classifier>remapped-spigot</classifier>
+        </dependency>
+        <dependency>
+            <groupId>net.shortninja.staffplus</groupId>
+            <artifactId>v1_18_R0</artifactId>
+            <version>${project.parent.version}</version>
+            <classifier>remapped-spigot</classifier>
+        </dependency>
+        <dependency>
+            <groupId>net.shortninja.staffplus</groupId>
+            <artifactId>v1_18_R1</artifactId>
             <version>${project.parent.version}</version>
             <classifier>remapped-spigot</classifier>
         </dependency>
