@@ -90,7 +90,7 @@ public class Protocol_v1_18_R0 implements IProtocol {
         } else
             packet = new ClientboundPlayerInfoPacket(Action.ADD_PLAYER, ((CraftPlayer) player).getHandle());
 
-        sendGlobalPacket(packet);
+        sendToAllButMe(packet, player);
     }
 
     @Override
@@ -103,10 +103,11 @@ public class Protocol_v1_18_R0 implements IProtocol {
         }
     }
 
-
-    private void sendGlobalPacket(Packet<?> packet) {
+    private void sendToAllButMe(Packet<?> packet, Player me) {
         for (Player player : Bukkit.getOnlinePlayers()) {
-            ((CraftPlayer) player).getHandle().connection.connection.send(packet);
+            if(!me.getUniqueId().equals(player.getUniqueId())) {
+                ((CraftPlayer) player).getHandle().connection.connection.send(packet);
+            }
         }
     }
 
