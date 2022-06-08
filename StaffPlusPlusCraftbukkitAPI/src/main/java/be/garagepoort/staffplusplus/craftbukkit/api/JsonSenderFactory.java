@@ -10,6 +10,7 @@ import net.shortninja.staffplus.server.compatibility.v1_14_R2.Protocol_v1_14_R2;
 import net.shortninja.staffplus.server.compatibility.v1_1x.JsonSender_v1_17_R0;
 import net.shortninja.staffplus.server.compatibility.v1_1x.JsonSender_v1_18_R0;
 import net.shortninja.staffplus.server.compatibility.v1_1x.JsonSender_v1_18_R1;
+import net.shortninja.staffplus.server.compatibility.v1_1x.JsonSender_v1_19_R0;
 import net.shortninja.staffplus.server.compatibility.v1_1x.Protocol_v1_15_R1;
 import net.shortninja.staffplus.server.compatibility.v1_1x.Protocol_v1_16_R1;
 import net.shortninja.staffplus.server.compatibility.v1_1x.Protocol_v1_16_R2;
@@ -31,6 +32,8 @@ public class JsonSenderFactory {
                 return new JsonSender_v1_18_R0();
             case "v1_18_R2":
                 return new JsonSender_v1_18_R1();
+            case "v1_19_R1":
+                return new JsonSender_v1_19_R0();
             default:
                 throw new RuntimeException("No suitable jsonsender version found. Are you sure this version of minecraft is supported?");
         }
