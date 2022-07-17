@@ -2,17 +2,10 @@ package net.shortninja.staffplus.server.compatibility.v1_1x;
 
 import be.garagepoort.staffplusplus.craftbukkit.common.json.rayzr.JSONMessage;
 import be.garagepoort.staffplusplus.craftbukkit.common.json.rayzr.JsonSender;
-import net.minecraft.network.chat.ChatSender;
-import net.minecraft.network.chat.ChatType;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.protocol.game.ClientboundPlayerChatPacket;
-import net.minecraft.util.Crypt;
+import net.minecraft.network.protocol.game.ClientboundSystemChatPacket;
 import org.bukkit.craftbukkit.v1_19_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
-
-import java.time.Instant;
-import java.util.Optional;
-import java.util.UUID;
 
 public class JsonSender_v1_19_R0 implements JsonSender {
 
@@ -21,7 +14,7 @@ public class JsonSender_v1_19_R0 implements JsonSender {
         sendPacket(createTextPacket(jsonMessage.toString()), players);
     }
 
-    private void sendPacket(ClientboundPlayerChatPacket packet, Player... players) {
+    private void sendPacket(ClientboundSystemChatPacket packet, Player... players) {
         if (packet == null) {
             return;
         }
@@ -36,9 +29,9 @@ public class JsonSender_v1_19_R0 implements JsonSender {
         }
     }
 
-    private ClientboundPlayerChatPacket createTextPacket(String message) {
+    private ClientboundSystemChatPacket createTextPacket(String message) {
         try {
-            return new ClientboundPlayerChatPacket(Component.Serializer.fromJson(message), Optional.empty(), 0, ChatSender.system(Component.literal("Staff++")), Instant.now(), Crypt.SaltSignaturePair.EMPTY);
+            return new ClientboundSystemChatPacket(Component.Serializer.fromJson(message), 1);
         } catch (Exception e) {
             e.printStackTrace();
             return null;
