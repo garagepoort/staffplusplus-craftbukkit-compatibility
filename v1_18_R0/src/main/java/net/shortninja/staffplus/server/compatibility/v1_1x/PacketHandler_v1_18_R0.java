@@ -20,7 +20,7 @@ public final class PacketHandler_v1_18_R0 extends AbstractPacketHandler {
         if (o instanceof ClientboundSoundPacket) {
             RegisteredServiceProvider<IStaffPlus> provider = Bukkit.getServicesManager().getRegistration(IStaffPlus.class);
             if (provider != null) {
-                return !provider.getProvider().getSessionManager().get(player.getUniqueId()).isVanished();
+                return !provider.getProvider().getSessionManager().get(player).isVanished();
             }
         }
 
