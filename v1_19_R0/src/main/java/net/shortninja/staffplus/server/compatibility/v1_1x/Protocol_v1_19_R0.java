@@ -5,13 +5,11 @@ import be.garagepoort.staffplusplus.craftbukkit.common.json.JsonMessage;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelPipeline;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.chat.ChatSender;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.Packet;
-import net.minecraft.network.protocol.game.ClientboundPlayerChatPacket;
 import net.minecraft.network.protocol.game.ClientboundPlayerInfoPacket;
 import net.minecraft.network.protocol.game.ClientboundPlayerInfoPacket.Action;
-import net.minecraft.util.Crypt;
+import net.minecraft.network.protocol.game.ClientboundSystemChatPacket;
 import net.minecraft.world.item.ItemStack;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
@@ -21,8 +19,6 @@ import org.bukkit.craftbukkit.v1_19_R1.entity.CraftPlayer;
 import org.bukkit.craftbukkit.v1_19_R1.inventory.CraftItemStack;
 import org.bukkit.entity.Player;
 
-import java.time.Instant;
-import java.util.Optional;
 import java.util.Set;
 
 public class Protocol_v1_19_R0 implements IProtocol {
@@ -98,7 +94,7 @@ public class Protocol_v1_19_R0 implements IProtocol {
     @Override
     public void sendHoverableJsonMessage(Set<Player> players, String message, String hoverMessage) {
         JsonMessage json = new JsonMessage().append(message).setHoverAsTooltip(hoverMessage).save();
-        ClientboundPlayerChatPacket packet = new ClientboundPlayerChatPacket(Component.Serializer.fromJson(json.getMessage()), Optional.empty(), 0, ChatSender.system(Component.literal("Staff++")), Instant.now(), Crypt.SaltSignaturePair.EMPTY);
+        ClientboundSystemChatPacket packet = new ClientboundSystemChatPacket(Component.Serializer.fromJson(json.getMessage()), 1);
 
         for (Player player : players) {
             ((CraftPlayer) player).getHandle().connection.connection.send(packet);
