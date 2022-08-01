@@ -94,7 +94,7 @@ public class Protocol_v1_19_R0 implements IProtocol {
     @Override
     public void sendHoverableJsonMessage(Set<Player> players, String message, String hoverMessage) {
         JsonMessage json = new JsonMessage().append(message).setHoverAsTooltip(hoverMessage).save();
-        ClientboundSystemChatPacket packet = new ClientboundSystemChatPacket(Component.Serializer.fromJson(json.getMessage()), 1);
+        ClientboundSystemChatPacket packet = new ClientboundSystemChatPacket(Component.Serializer.fromJson(json.getMessage()), false);
 
         for (Player player : players) {
             ((CraftPlayer) player).getHandle().connection.connection.send(packet);
