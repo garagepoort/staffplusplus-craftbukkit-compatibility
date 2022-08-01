@@ -7,7 +7,7 @@ import net.minecraft.network.protocol.game.ClientboundSystemChatPacket;
 import org.bukkit.craftbukkit.v1_19_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 
-public class JsonSender_v1_19_R0 implements JsonSender {
+public class JsonSender_v1_19_R1 implements JsonSender {
 
     @Override
     public void send(JSONMessage jsonMessage, Player...players) {
@@ -31,7 +31,7 @@ public class JsonSender_v1_19_R0 implements JsonSender {
 
     private ClientboundSystemChatPacket createTextPacket(String message) {
         try {
-            return new ClientboundSystemChatPacket(Component.Serializer.fromJson(message), 1);
+            return new ClientboundSystemChatPacket(Component.Serializer.fromJson(message), false);
         } catch (Exception e) {
             e.printStackTrace();
             return null;

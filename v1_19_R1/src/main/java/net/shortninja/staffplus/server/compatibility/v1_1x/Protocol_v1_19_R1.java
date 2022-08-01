@@ -21,7 +21,7 @@ import org.bukkit.entity.Player;
 
 import java.util.Set;
 
-public class Protocol_v1_19_R0 implements IProtocol {
+public class Protocol_v1_19_R1 implements IProtocol {
     @Override
     public org.bukkit.inventory.ItemStack addNbtString(org.bukkit.inventory.ItemStack item, String value) {
         ItemStack craftItem = CraftItemStack.asNMSCopy(item);
@@ -94,7 +94,7 @@ public class Protocol_v1_19_R0 implements IProtocol {
     @Override
     public void sendHoverableJsonMessage(Set<Player> players, String message, String hoverMessage) {
         JsonMessage json = new JsonMessage().append(message).setHoverAsTooltip(hoverMessage).save();
-        ClientboundSystemChatPacket packet = new ClientboundSystemChatPacket(Component.Serializer.fromJson(json.getMessage()), 1);
+        ClientboundSystemChatPacket packet = new ClientboundSystemChatPacket(Component.Serializer.fromJson(json.getMessage()), false);
 
         for (Player player : players) {
             ((CraftPlayer) player).getHandle().connection.connection.send(packet);
@@ -117,7 +117,7 @@ public class Protocol_v1_19_R0 implements IProtocol {
     @Override
     public void inject(Player player) {
         final ChannelPipeline pipeline = ((CraftPlayer) player).getHandle().connection.connection.channel.pipeline();
-        pipeline.addBefore("packet_handler", player.getUniqueId().toString(), new PacketHandler_v1_19_R0(player));
+        pipeline.addBefore("packet_handler", player.getUniqueId().toString(), new PacketHandler_v1_19_R1(player));
     }
 
     @Override

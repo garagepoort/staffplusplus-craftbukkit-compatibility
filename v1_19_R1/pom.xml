@@ -9,11 +9,10 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>v1_19_R0</artifactId>
+    <artifactId>v1_19_R1</artifactId>
 
     <properties>
-
-        <spigot.version>1.19-R0.1-SNAPSHOT</spigot.version>
+        <spigot.version>1.19.1-R0.1-SNAPSHOT</spigot.version>
     </properties>
 
     <dependencies>
