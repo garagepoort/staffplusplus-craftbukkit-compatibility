@@ -31,7 +31,7 @@ public class JsonSender_v1_19_R0 implements JsonSender {
 
     private ClientboundSystemChatPacket createTextPacket(String message) {
         try {
-            return new ClientboundSystemChatPacket(Component.Serializer.fromJson(message), 1);
+            return new ClientboundSystemChatPacket(Component.Serializer.fromJson(message), false);
         } catch (Exception e) {
             e.printStackTrace();
             return null;
