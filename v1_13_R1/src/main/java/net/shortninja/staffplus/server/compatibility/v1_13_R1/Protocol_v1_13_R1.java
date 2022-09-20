@@ -122,7 +122,7 @@ public class Protocol_v1_13_R1 implements IProtocol {
         final ChannelPipeline pipeline = this.getChannel(player).pipeline();
 
         // Probably will go wrong at runtime but I have no clue how to fix it. - Ronald.
-        //pipeline.addBefore("packet_handler", player.getUniqueId().toString(), new PacketHandler_v1_13_R2(player));
+        //pipeline.addBefore("packet_handler", "staffplusplus_" + player.getUniqueId().toString(), new PacketHandler_v1_13_R2(player));
     }
 
     @Override
