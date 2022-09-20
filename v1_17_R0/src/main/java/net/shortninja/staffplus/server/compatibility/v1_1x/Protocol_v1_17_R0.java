@@ -118,7 +118,7 @@ public class Protocol_v1_17_R0 implements IProtocol {
     @Override
     public void inject(Player player) {
         final ChannelPipeline pipeline = ((CraftPlayer) player).getHandle().connection.connection.channel.pipeline();
-        pipeline.addBefore("packet_handler", player.getUniqueId().toString(), new PacketHandler_v1_17_R0(player));
+        pipeline.addBefore("packet_handler", "staffplusplus_" + player.getUniqueId().toString(), new PacketHandler_v1_17_R0(player));
     }
 
     @Override
