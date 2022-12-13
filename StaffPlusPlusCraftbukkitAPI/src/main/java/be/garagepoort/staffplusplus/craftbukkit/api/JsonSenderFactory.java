@@ -6,6 +6,7 @@ import net.shortninja.staffplus.server.compatibility.v1_1x.JsonSender_v1_18_R0;
 import net.shortninja.staffplus.server.compatibility.v1_1x.JsonSender_v1_18_R1;
 import net.shortninja.staffplus.server.compatibility.v1_1x.JsonSender_v1_19_R0;
 import net.shortninja.staffplus.server.compatibility.v1_1x.JsonSender_v1_19_R1;
+import net.shortninja.staffplus.server.compatibility.v1_1x.JsonSender_v1_19_R2;
 import org.bukkit.Bukkit;
 
 public class JsonSenderFactory {
@@ -24,6 +25,8 @@ public class JsonSenderFactory {
             case "1.19.1-R0.1-SNAPSHOT":
             case "1.19.2-R0.1-SNAPSHOT":
                 return new JsonSender_v1_19_R1();
+            case "1.19.3-R0.1-SNAPSHOT":
+                return new JsonSender_v1_19_R2();
             default:
                 throw new RuntimeException("No suitable protocol version found for: " + version + ". Are you sure this version of minecraft is supported?");
         }
