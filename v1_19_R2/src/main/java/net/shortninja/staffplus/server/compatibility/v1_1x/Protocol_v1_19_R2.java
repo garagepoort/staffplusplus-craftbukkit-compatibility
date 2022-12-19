@@ -84,14 +84,18 @@ public class Protocol_v1_19_R2 implements IProtocol {
     @Override
     public void listVanish(Player player, boolean shouldEnable) {
         Packet packet = null;
+        CraftPlayer craftPlayer = (CraftPlayer) player;
+        ServerPlayer sp = craftPlayer.getHandle();
 
         if (shouldEnable) {
             packet = new ClientboundPlayerInfoRemovePacket(List.of(player.getUniqueId()));
+            sendToAllButMe(packet, player);
         } else {
-            packet = new ClientboundPlayerInfoUpdatePacket(ClientboundPlayerInfoUpdatePacket.Action.ADD_PLAYER, ((ServerPlayer) player));
+            packet = new ClientboundPlayerInfoUpdatePacket(ClientboundPlayerInfoUpdatePacket.Action.ADD_PLAYER, sp);
+            sendToAllButMe(packet, player);
+            packet = new ClientboundPlayerInfoUpdatePacket(ClientboundPlayerInfoUpdatePacket.Action.UPDATE_LISTED, sp);
+            sendToAllButMe(packet, player);
         }
-
-        sendToAllButMe(packet, player);
     }
 
     @Override
