@@ -1,14 +1,7 @@
 package be.garagepoort.staffplusplus.craftbukkit.api;
 
 import be.garagepoort.staffplusplus.craftbukkit.common.json.rayzr.JsonSender;
-import net.shortninja.staffplus.server.compatibility.v1_1x.JsonSender_v1_17_R0;
-import net.shortninja.staffplus.server.compatibility.v1_1x.JsonSender_v1_18_R0;
-import net.shortninja.staffplus.server.compatibility.v1_1x.JsonSender_v1_18_R1;
-import net.shortninja.staffplus.server.compatibility.v1_1x.JsonSender_v1_19_R0;
-import net.shortninja.staffplus.server.compatibility.v1_1x.JsonSender_v1_19_R1;
-import net.shortninja.staffplus.server.compatibility.v1_1x.JsonSender_v1_19_R2;
-import net.shortninja.staffplus.server.compatibility.v1_1x.JsonSender_v1_19_R3;
-import net.shortninja.staffplus.server.compatibility.v1_1x.JsonSender_v1_20_R0;
+import net.shortninja.staffplus.server.compatibility.v1_1x.*;
 import org.bukkit.Bukkit;
 
 public class JsonSenderFactory {
@@ -36,6 +29,8 @@ public class JsonSenderFactory {
             case "1.20.1-R0.1":
             case "1.20-R0.1":
                 return new JsonSender_v1_20_R0();
+            case "1.20.2-R0.1":
+                return new JsonSender_v1_20_R2();
             default:
                 throw new RuntimeException("No suitable protocol version found for: " + version + ". Are you sure this version of minecraft is supported?");
         }
