@@ -31,6 +31,8 @@ public class JsonSenderFactory {
                 return new JsonSender_v1_20_R0();
             case "1.20.2-R0.1":
                 return new JsonSender_v1_20_R2();
+            case "1.20.4-R0.1":
+                return new JsonSender_v1_20_R3();
             default:
                 throw new RuntimeException("No suitable protocol version found for: " + version + ". Are you sure this version of minecraft is supported?");
         }
