@@ -61,6 +61,8 @@ public class ProtocolFactory {
                 return new Protocol_v1_20_R3();
             case "1.20.6-R0.1":
                 return new Protocol_v1_20_R4();
+            case "1.21-R0.1":
+                return new Protocol_v1_21_R0();
             default:
                 throw new RuntimeException("No suitable protocol version found for: " + version + ". Are you sure this version of minecraft is supported?");
         }
