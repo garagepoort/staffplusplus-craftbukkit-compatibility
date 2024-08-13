@@ -12,8 +12,9 @@
     <artifactId>v1_17_R0</artifactId>
 
     <properties>
-
         <spigot.version>1.17-R0.1-SNAPSHOT</spigot.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
 
     <dependencies>
