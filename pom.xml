@@ -42,6 +42,7 @@
         <module>v1_21_R0</module>
         <module>v1_21_R1</module>
         <module>v1_21_R2</module>
+        <module>v1_21_R3</module>
         <module>StaffPlusPlusCraftbukkitAPI</module>
     </modules>
 
