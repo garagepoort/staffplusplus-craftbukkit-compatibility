@@ -1,5 +1,6 @@
 package be.garagepoort.staffplusplus.craftbukkit.api;
 
+import be.garagepoort.staffplusplus.craftbukkit.api.exceptions.UnsupportedVersionException;
 import be.garagepoort.staffplusplus.craftbukkit.common.IProtocol;
 import net.shortninja.staffplus.server.compatibility.v1_12_R1.Protocol_v1_12_R1;
 import net.shortninja.staffplus.server.compatibility.v1_13_R1.Protocol_v1_13_R1;
@@ -72,7 +73,7 @@ public class ProtocolFactory {
             case "1.21.5-R0.1":
                 return new Protocol_v1_21_R3();
             default:
-                throw new RuntimeException("No suitable protocol version found for: " + version + ". Are you sure this version of minecraft is supported?");
+                throw new UnsupportedVersionException(version);
         }
     }
 }

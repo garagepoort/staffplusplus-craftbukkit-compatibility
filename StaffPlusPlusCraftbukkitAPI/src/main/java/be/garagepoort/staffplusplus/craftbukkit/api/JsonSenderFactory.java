@@ -1,5 +1,6 @@
 package be.garagepoort.staffplusplus.craftbukkit.api;
 
+import be.garagepoort.staffplusplus.craftbukkit.api.exceptions.UnsupportedVersionException;
 import be.garagepoort.staffplusplus.craftbukkit.common.json.rayzr.JsonSender;
 import net.shortninja.staffplus.server.compatibility.v1_1x.*;
 import org.bukkit.Bukkit;
@@ -46,7 +47,7 @@ public class JsonSenderFactory {
             case "1.21.5-R0.1":
                 return new JsonSender_v1_21_R3();
             default:
-                throw new RuntimeException("No suitable protocol version found for: " + version + ". Are you sure this version of minecraft is supported?");
+                throw new UnsupportedVersionException(version);
         }
     }
 }
