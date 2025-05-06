@@ -8,7 +8,7 @@
     <description>Compatibility module for use of craftbukki's internal api</description>
     <artifactId>StaffPlusPlusCraftBukkit</artifactId>
     <packaging>pom</packaging>
-    <version>1.21.3</version>
+    <version>1.21.4</version>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -42,6 +42,7 @@
         <module>v1_21_R0</module>
         <module>v1_21_R1</module>
         <module>v1_21_R2</module>
+        <module>v1_21_R3</module>
         <module>StaffPlusPlusCraftbukkitAPI</module>
     </modules>
 
