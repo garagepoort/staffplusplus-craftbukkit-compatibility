@@ -20,7 +20,7 @@ jobs:
         uses: rlespinasse/github-slug-action@v3.x
 
       - id: get-release-version
-        uses: actions/github-script@7
+        uses: actions/github-script@v7
         with:
           script: |
             const releaseVersion = process.env.GITHUB_REF_SLUG.substring(process.env.GITHUB_REF_SLUG.indexOf("-") + 1, process.env.GITHUB_REF_SLUG.lastIndexOf("."));
