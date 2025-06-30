@@ -46,6 +46,8 @@ public class JsonSenderFactory {
                 return new JsonSender_v1_21_R2();
             case "1.21.5-R0.1":
                 return new JsonSender_v1_21_R3();
+            case "1.21.6-R0.1":
+                return new JsonSender_v1_21_R4();
             default:
                 throw new UnsupportedVersionException(version);
         }
