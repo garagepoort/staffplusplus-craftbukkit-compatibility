@@ -78,6 +78,8 @@ public class ProtocolFactory {
                 return new Protocol_v1_21_R5();
             case "1.21.9-R0.1", "1.21.10-R0.1":
                 return new Protocol_v1_21_R6();
+            case "1.21.11-R0.1":
+                return new Protocol_v1_21_R7();
             default:
                 throw new UnsupportedVersionException(version);
         }
