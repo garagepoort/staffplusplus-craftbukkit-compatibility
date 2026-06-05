@@ -193,5 +193,10 @@
             <version>${project.parent.version}</version>
             <classifier>remapped-spigot</classifier>
         </dependency>
+        <dependency>
+            <groupId>net.shortninja.staffplus</groupId>
+            <artifactId>v26_1_R0</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
     </dependencies>
 </project>
