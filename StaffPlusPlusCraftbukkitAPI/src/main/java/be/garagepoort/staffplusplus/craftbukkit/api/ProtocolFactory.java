@@ -13,9 +13,9 @@ import org.bukkit.Bukkit;
 public class ProtocolFactory {
 
     public static IProtocol getProtocol() {
-        final String version = Bukkit.getBukkitVersion();
-        final String versionWithoutSnapshot = version.replaceAll("-SNAPSHOT", "");
-        switch (versionWithoutSnapshot) {
+        final String version = VersionUtil.getMcVersion();
+
+        switch (version) {
             case "1.12.1-R0.1":
             case "1.12.2-R0.1":
                 return new Protocol_v1_12_R1();

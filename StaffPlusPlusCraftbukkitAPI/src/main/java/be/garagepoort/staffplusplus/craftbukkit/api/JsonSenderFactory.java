@@ -8,10 +8,9 @@ import org.bukkit.Bukkit;
 public class JsonSenderFactory {
 
     public static JsonSender getSender() {
-        final String version = Bukkit.getBukkitVersion();
-        final String versionWithoutSnapshot = version.replaceAll("-SNAPSHOT", "");
+        final String version = VersionUtil.getMcVersion();
 
-        switch (versionWithoutSnapshot) {
+        switch (version) {
             case "1.17-R0.1":
                 return new JsonSender_v1_17_R0();
             case "1.18-R0.1":
