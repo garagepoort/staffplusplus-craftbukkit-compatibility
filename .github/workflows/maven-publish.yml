@@ -28,7 +28,7 @@ jobs:
 
       - name: Set up JDK 25
         uses: actions/setup-java@v4
-        if: ${{ steps.get-release-version.outputs.releaseVersion == '26.1' }}
+        if: ${{ steps.get-release-version.outputs.releaseVersion == '26.1' || steps.get-release-version.outputs.releaseVersion == '26.2' }}
         with:
           java-version: 25
           distribution: zulu
@@ -68,7 +68,7 @@ jobs:
 
       - name: Set up JDK 8
         uses: actions/setup-java@v4
-        if: ${{ steps.get-release-version.outputs.releaseVersion != '1.17' && steps.get-release-version.outputs.releaseVersion != '1.18' && steps.get-release-version.outputs.releaseVersion != '1.19' && steps.get-release-version.outputs.releaseVersion != '1.20' && steps.get-release-version.outputs.releaseVersion != '1.21' && steps.get-release-version.outputs.releaseVersion != '26.1' }}
+        if: ${{ steps.get-release-version.outputs.releaseVersion != '1.17' && steps.get-release-version.outputs.releaseVersion != '1.18' && steps.get-release-version.outputs.releaseVersion != '1.19' && steps.get-release-version.outputs.releaseVersion != '1.20' && steps.get-release-version.outputs.releaseVersion != '1.21' && steps.get-release-version.outputs.releaseVersion != '26.1' && steps.get-release-version.outputs.releaseVersion != '26.2' }}
         with:
           java-version: 8
           distribution: zulu

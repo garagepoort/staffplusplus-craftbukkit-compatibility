@@ -86,6 +86,8 @@ public class ProtocolFactory {
             case "26.1.1-R0.1":
             case "26.1.2-R0.1":
                 return new Protocol_v26_1_R0();
+            case "26.2-R0.1":
+                return new Protocol_v26_2_R0();
             default:
                 throw new UnsupportedVersionException(version);
         }
