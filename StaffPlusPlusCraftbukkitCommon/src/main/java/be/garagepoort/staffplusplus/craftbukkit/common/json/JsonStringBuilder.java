@@ -41,7 +41,7 @@ public class JsonStringBuilder {
             } else builder.append(lore[i] + "\n");
         }
 
-        hover = ",\"hoverEvent\":{\"action\":\"show_text\",\"value\":\"" + esc(builder.toString()) + "\"}";
+        hover = ",\"hover_event\":{\"action\":\"show_text\",\"value\":\"" + esc(builder.toString()) + "\"}";
 
         return this;
     }
@@ -55,7 +55,7 @@ public class JsonStringBuilder {
      * @return the json string builder to which you are applying settings
      */
     public JsonStringBuilder setHoverAsAchievement(String ach) {
-        hover = ",\"hoverEvent\":{\"action\":\"show_achievement\",\"value\":\"achievement." + esc(ach) + "\"}";
+        hover = ",\"hover_event\":{\"action\":\"show_achievement\",\"value\":\"achievement." + esc(ach) + "\"}";
         return this;
     }
 
@@ -66,7 +66,7 @@ public class JsonStringBuilder {
      * @return the json string builder to which you are applying settings.
      */
     public JsonStringBuilder setClickAsURL(String link) {
-        click = ",\"clickEvent\":{\"action\":\"open_url\",\"value\":\"" + esc(link) + "\"}";
+        click = ",\"click_event\":{\"action\":\"open_url\",\"value\":\"" + esc(link) + "\"}";
         return this;
     }
 
@@ -77,7 +77,7 @@ public class JsonStringBuilder {
      * @return the json string builder to which you are applying settings;
      */
     public JsonStringBuilder setClickAsSuggestCmd(String cmd) {
-        click = ",\"clickEvent\":{\"action\":\"suggest_command\",\"value\":\"" + esc(cmd) + "\"}";
+        click = ",\"click_event\":{\"action\":\"suggest_command\",\"value\":\"" + esc(cmd) + "\"}";
         return this;
     }
 
@@ -88,7 +88,7 @@ public class JsonStringBuilder {
      * @return
      */
     public JsonStringBuilder setClickAsExecuteCmd(String cmd) {
-        click = ",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"" + esc(cmd) + "\"}";
+        click = ",\"click_event\":{\"action\":\"run_command\",\"value\":\"" + esc(cmd) + "\"}";
         return this;
     }
 
