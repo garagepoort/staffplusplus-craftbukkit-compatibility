@@ -596,11 +596,11 @@ public class JSONMessage {
             }
 
             if (onClick != null) {
-                obj.add("clickEvent", onClick.toJSON());
+                obj.add("click_event", onClick.toJSON());
             }
 
             if (onHover != null) {
-                obj.add("hoverEvent", onHover.toJSON());
+                obj.add("hover_event", onHover.toJSON());
             }
 
             if (font != null) {
