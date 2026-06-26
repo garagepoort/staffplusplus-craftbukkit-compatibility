@@ -406,10 +406,16 @@ public class JSONMessage {
 
         private String action;
         private Object value;
+        private String valueType;
 
         public MessageEvent(String action, Object value) {
+            this(action, value, "value");
+        }
+
+        public MessageEvent(String action, Object value, String valueType) {
             this.action = action;
             this.value = value;
+            this.valueType = valueType;
         }
 
         /**
@@ -418,14 +424,11 @@ public class JSONMessage {
         public JsonObject toJSON() {
             JsonObject obj = new JsonObject();
             obj.addProperty("action", action);
-            /*
-             * MC 1.16 changed "value" to "contents", but only for Hover events... Don't ask why.
-             * Since this lib only has tooltip and achievement can we simply check if action starts with "show_"
-             */
-            String valueType = (action.startsWith("show_")) ? "contents" : "value";
 
             if (value instanceof JsonElement) {
                 obj.add(valueType, (JsonElement) value);
+            } else if ("page".equals(valueType)) {
+                obj.addProperty(valueType, Integer.parseInt(value.toString()));
             } else {
                 obj.addProperty(valueType, value.toString());
             }
@@ -460,6 +463,14 @@ public class JSONMessage {
             this.value = value;
         }
 
+        public String getValueType() {
+            return valueType;
+        }
+
+        public void setValueType(String valueType) {
+            this.valueType = valueType;
+        }
+
     }
 
     public static class ClickEvent {
@@ -471,7 +482,7 @@ public class JSONMessage {
          * @return The {@link MessageEvent}
          */
         public static MessageEvent runCommand(String command) {
-            return new MessageEvent("run_command", command);
+            return new MessageEvent("run_command", command, "command");
         }
 
         /**
@@ -481,7 +492,7 @@ public class JSONMessage {
          * @return The {@link MessageEvent}
          */
         public static MessageEvent suggestCommand(String command) {
-            return new MessageEvent("suggest_command", command);
+            return new MessageEvent("suggest_command", command, "command");
         }
 
         /**
@@ -491,7 +502,7 @@ public class JSONMessage {
          * @return The {@link MessageEvent}
          */
         public static MessageEvent openURL(String url) {
-            return new MessageEvent("open_url", url);
+            return new MessageEvent("open_url", url, "url");
         }
 
         /**
@@ -501,7 +512,7 @@ public class JSONMessage {
          * @return The {@link MessageEvent}
          */
         public static MessageEvent changePage(int page) {
-            return new MessageEvent("change_page", page);
+            return new MessageEvent("change_page", page, "page");
         }
 
         /**
