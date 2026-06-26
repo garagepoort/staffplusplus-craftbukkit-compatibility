@@ -66,7 +66,7 @@ public class JsonStringBuilder {
      * @return the json string builder to which you are applying settings.
      */
     public JsonStringBuilder setClickAsURL(String link) {
-        click = ",\"click_event\":{\"action\":\"open_url\",\"value\":\"" + esc(link) + "\"}";
+        click = ",\"click_event\":{\"action\":\"open_url\",\"url\":\"" + esc(link) + "\"}";
         return this;
     }
 
@@ -77,7 +77,7 @@ public class JsonStringBuilder {
      * @return the json string builder to which you are applying settings;
      */
     public JsonStringBuilder setClickAsSuggestCmd(String cmd) {
-        click = ",\"click_event\":{\"action\":\"suggest_command\",\"value\":\"" + esc(cmd) + "\"}";
+        click = ",\"click_event\":{\"action\":\"suggest_command\",\"command\":\"" + esc(cmd) + "\"}";
         return this;
     }
 
@@ -88,7 +88,7 @@ public class JsonStringBuilder {
      * @return
      */
     public JsonStringBuilder setClickAsExecuteCmd(String cmd) {
-        click = ",\"click_event\":{\"action\":\"run_command\",\"value\":\"" + esc(cmd) + "\"}";
+        click = ",\"click_event\":{\"action\":\"run_command\",\"command\":\"" + esc(cmd) + "\"}";
         return this;
     }
 
